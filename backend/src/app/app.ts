@@ -2,11 +2,15 @@ import express, { NextFunction } from "express";
 import { Request, Response } from "express";
 import { sendResponse } from "./utils/sendResponse.js";
 import { AppError } from "./utils/errorFormats.js";
+import authRouters from "./module/auth/auth.route.js";
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
+// Routes
+app.use("/api/auth", authRouters);
 
 app.get("/", (req: Request, res: Response) => {
     res.send("Server Running...");
