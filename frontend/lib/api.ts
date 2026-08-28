@@ -1,0 +1,22 @@
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+export const apiFetch = async (
+    endpoint: string,
+    options: RequestInit = {}
+) => {
+    const response = await fetch(`${API_URL}${endpoint}`, {
+        ...options,
+        headers: {
+            "Authorization": "application/json",
+            ...options.headers,
+        }
+    });
+
+    return response;
+}
+
+// example call
+// const response = await apiFetch("/auth/login", {
+//   method: "POST",
+//   body: JSON.stringify(data),
+// });
