@@ -1,0 +1,3 @@
+# Problem Statement
+
+Many Students and Job Seekers struggle to track their job applications. Once they apply to a job, many times they forget that when to follow-up, what is the status of that application, which version of resume they have used to that application, visualizing the applications in a structured manner, having a proper data about job applications like how many total job applications, how many rejected, how many shortlisted and which they have got interview call etc. We can do so many things in tools like google sheets and others, but still their are some problems stays. So it would be a good solution if everything gets into a single place efficiently lets them to track their job application.
