@@ -1,14 +1,14 @@
-# Project Name
+# JATFlow
 
 ## Description
 
-Brief description of the project.
+JATFlow is a job application tracker and resume versioning system where a job seeker can track own job applications.
 
 ## Features
 
-- 
-- 
-- 
+- resume versioning
+- statistical dashboard
+- job application management
 
 ## Tech Stack
 
