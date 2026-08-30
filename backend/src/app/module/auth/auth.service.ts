@@ -7,7 +7,7 @@ import { createAccessToken } from "../../utils/jwt.js";
 
 
 const createUser = async (payload: UserRegistrationPayload) => {
-    const {email, password} = payload;
+    const {username, email, password} = payload;
     
     const user = await authRepo.getUserByEmail(email);
     if (user) {
@@ -17,6 +17,7 @@ const createUser = async (payload: UserRegistrationPayload) => {
     const hashPassword = await bcrypt.hash(password, Number(config.BCRYPT_SALT_ROUNDS));
 
     const updatedPayload = {
+        username,
         email,
         password: hashPassword,
     };

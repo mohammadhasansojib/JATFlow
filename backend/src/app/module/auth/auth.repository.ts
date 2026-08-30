@@ -5,13 +5,10 @@ import { UserRegistrationPayload } from "./auth.interface.js";
 class AuthRepo {
 
     async createUserIntoDB(payload: UserRegistrationPayload) {
-        const email = payload.email;
-        const password = payload.password;
 
         const createdUser = await prisma.user.create({
             data: {
-                email,
-                password,
+                ...payload,
             },
             omit: {
                 password: true,

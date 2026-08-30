@@ -16,11 +16,3 @@ model Test {
   id    Int    @id @default(autoincrement())
   value String
 }
-
-model User {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
