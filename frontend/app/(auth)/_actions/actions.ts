@@ -2,6 +2,8 @@
 
 import { apiFetch } from "@/lib/api";
 import { IFormState } from "../_components/RegisterForm";
+import { ILoginFormState } from "../_components/LoginForm";
+import { cookies } from "next/headers";
 // import { redirect, RedirectType } from "next/navigation";
 
 export const createUser = async (_prevState: IFormState, formData: FormData) => {
@@ -39,6 +41,44 @@ export const createUser = async (_prevState: IFormState, formData: FormData) => 
         return data;
 
     } catch (error) {
+        console.log(error);
+    }
+}
+
+export const loginUser = async (_prevState: ILoginFormState, formData: FormData) => {
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    const payload = {
+        email,
+        password,
+    };
+
+    try {
+
+        const apiResponse = await apiFetch(`/api/auth/login`, {
+            method: "POST",
+            body: JSON.stringify(payload),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+        const response = await apiResponse.json();
+        console.log(response);
+
+        if (response.success) {
+            const cookieStore = await cookies();
+
+            cookieStore.set("accessToken", response.data.accessToken, {
+                secure: false,
+                httpOnly: true,
+            });
+        }
+
+        return response;
+
+    } catch(error) {
         console.log(error);
     }
 }
