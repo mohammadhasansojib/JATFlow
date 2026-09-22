@@ -3,11 +3,21 @@ import { Request, Response } from "express";
 import { sendResponse } from "./utils/sendResponse.js";
 import { AppError } from "./utils/errorFormats.js";
 import authRouters from "./module/auth/auth.route.js";
+import cors from "cors";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
+app.use(cookieParser());
+
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
+// cors
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+}));
 
 // Routes
 app.use("/api/auth", authRouters);
