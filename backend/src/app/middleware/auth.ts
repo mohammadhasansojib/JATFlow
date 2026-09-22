@@ -19,11 +19,20 @@ export const auth = () => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
             
-            const token = req.headers.authorization
-                        ? req.headers.authorization.startsWith("Bearer")
-                        ? req.headers.authorization.split(" ")[1]
-                        : req.headers.authorization
-                        : null;
+            let token: string | null;
+
+            if (req.cookies.accessToken) {
+                token = req.cookies.accessToken;
+            } else if (req.headers.authorization) {
+                if (req.headers.authorization.startsWith("Bearer ")) {
+                    token = req.headers.authorization.split(" ")[1];
+                } else {
+                    token = req.headers.authorization;
+                }
+            } else {
+                token = null;
+            }
+
             if (!token) {
                 throw new AuthorizationError("token not found");
             }
