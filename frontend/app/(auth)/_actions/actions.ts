@@ -73,6 +73,7 @@ export const loginUser = async (_prevState: ILoginFormState, formData: FormData)
             cookieStore.set("accessToken", response.data.accessToken, {
                 secure: false,
                 httpOnly: true,
+                path: "/",
             });
         }
 
