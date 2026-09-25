@@ -7,4 +7,5 @@ export const config = {
     BCRYPT_SALT_ROUNDS: process.env.BCRYPT_SALT_ROUNDS!,
     ACCESS_TOKEN_SECRET: process.env.ACCESS_TOKEN_SECRET!,
     ACCESS_TOKEN_EXPIRE: Number(process.env.ACCESS_TOKEN_EXPIRE!),
+    FRONTEND_URL: process.env.FRONTEND_URL!,
 }

@@ -5,6 +5,7 @@ import { AppError } from "./utils/errorFormats.js";
 import authRouters from "./module/auth/auth.route.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import { config } from "./config/index.js";
 
 const app = express();
 
@@ -15,7 +16,7 @@ app.use(express.urlencoded({extended: true}));
 
 // cors
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: config.FRONTEND_URL,
     credentials: true,
 }));
 
