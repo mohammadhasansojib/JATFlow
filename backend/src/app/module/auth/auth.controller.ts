@@ -36,12 +36,6 @@ const login = catchAsync(async (req: Request, res: Response) => {
 const logout = catchAsync(async (req: Request, res: Response) => {
     const user = req.user;
 
-    res.clearCookie("accessToken", {
-        secure: false,
-        httpOnly: true,
-        path: "/",
-    })
-
     sendResponse(res, {
         success: true,
         message: "user logout successfully",
