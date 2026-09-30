@@ -71,9 +71,10 @@ export const loginUser = async (_prevState: ILoginFormState, formData: FormData)
             const cookieStore = await cookies();
 
             cookieStore.set("accessToken", response.data.accessToken, {
-                secure: false,
+                secure: process.env.NODE_ENV === "production",
                 httpOnly: true,
                 path: "/",
+                sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
             });
         }
 
@@ -82,4 +83,10 @@ export const loginUser = async (_prevState: ILoginFormState, formData: FormData)
     } catch(error) {
         console.log(error);
     }
+}
+
+export const logoutUser = async () => {
+
+    const cookieStore = await cookies();
+    cookieStore.delete("accessToken");
 }

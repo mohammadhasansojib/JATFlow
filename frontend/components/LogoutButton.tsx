@@ -1,6 +1,7 @@
 "use client";
 
-import { apiFetch } from "@/lib/api";
+import { logoutUser } from "@/app/(auth)/_actions/actions";
+// import { apiFetch } from "@/lib/api";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 
@@ -9,16 +10,7 @@ const LogoutButton = () => {
 
     const handleClick = async () => {
         try {
-            const apiResponse = await apiFetch("/api/auth/logout", {
-                method: "POST",
-                credentials: "include",
-                headers: {
-                    
-                }
-            });
-
-            const response = await apiResponse.json();
-            console.log(response);
+            await logoutUser();
 
             router.push("/login");
         } catch (error) {
